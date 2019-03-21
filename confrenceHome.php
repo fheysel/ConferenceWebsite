@@ -1,3 +1,23 @@
+<?php
+  if(isset($_POST["attendeeSubmit"])){ //if a new attendee is registered
+    $fname = $_POST["firstname"];
+    $lname = $_POST["lastname"];
+    $email = $_POST["email"];
+    $attendee = $_POST["attendee"];
+    $message = "Success! Welcome to the conference ".$fname." ".$lname.". You have purchased a ".$attendee." ticket, your ticket has been emailed to ".$email;
+    $pdo = new PDO('mysql:host=localhost;dbname=confrence', "root", "");
+    if($attendee == "professional"){
+      $sql = "INSERT INTO professional(email, fname, lname) VALUES ('$email', '$fname', '$lname')";
+    }
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+
+    // redirect to the same page without the POST data
+    header("Location: ".$_SERVER['PHP_SELF']);
+    die;
+    echo "<script type='text/javascript'>alert('$message');</script>";
+  }
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -182,23 +202,3 @@
 
 </body>
 </html>
-
-
-
-<?php
-  if(isset($_POST["attendeeSubmit"])){ //if a new attendee is registered
-    $fname = $_POST["firstname"];
-    $lname = $_POST["lastname"];
-    $email = $_POST["email"];
-    $attendee = $_POST["attendee"];
-    $message = "Success! Welcome to the conference ".$fname." ".$lname.". You have purchased a ".$attendee." ticket, your ticket has been emailed to ".$email;
-    echo "<script type='text/javascript'>alert('$message');</script>";
-    $pdo = new PDO('mysql:host=localhost;dbname=confrence', "root", "");
-
-    if($attendee == "professional"){
-      $sql = "INSERT INTO professional(email, fname, lname) VALUES ('$email', '$fname', '$lname')";
-    }
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-  }
- ?>
