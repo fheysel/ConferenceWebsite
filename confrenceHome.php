@@ -1,3 +1,12 @@
+<?php
+  if(isset($_POST['attendeeSubmit'])){ //if a new attendee is registered
+    $fname = $_POST['firstname'];
+    $message = "Success! You entered: ".$fname;
+  }
+ ?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +23,7 @@
         <h1>Sign Up.</h1>
       </div>
       <div class="col">
-        <form action="conHome.html" method="post">
+        <form action="" method="post">
           <div class="row">
             <div class="col">
               <input class="form-control" type="text" name="firstname" placeholder="First Name">
@@ -25,7 +34,7 @@
           </div>
           <div class="row">
             <div class="col">
-              <h6>Attendee Type:</h6>
+              <input class="form-control" type="text" name="email" placeholder="email">
             </div>
             <div class="col">
               <select class="form-control" name="attendee">
@@ -40,7 +49,7 @@
                 <input class="form-control" type="text" name="roomNum" placeholder="Room Num (Stuents Only)">
             </div>
             <div class="col">
-              <input class="btn btn-square btn-primary" type="submit" value="Sign Up">
+              <input class="btn btn-square btn-primary" name="attendeeSubmit" type="submit" value="Sign Up">
             </div>
           </div>
         </form>
@@ -51,7 +60,7 @@
   <div class="container" id="homePageDivGrey">
     <div class="row">
       <div class="col">
-        <form action="conHome.html" method="post">
+        <form action="" method="post">
           <div class="row">
             <div class="col">
               <input class="form-control" type="text" name="companyName" placeholder="Company Name">
@@ -69,7 +78,7 @@
               <p>If you wish to delete a company from the database enter the company name in the textbox below.</p>
           </div>
         </div>
-        <form action="conHome.html" method="post">
+        <form action="" method="post">
           <div class="row">
             <div class="col">
               <input class="form-control" type="text" name="cNameDelete" placeholder="Company Name">
