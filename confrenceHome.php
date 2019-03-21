@@ -1,16 +1,7 @@
-<?php
-  if(isset($_POST['attendeeSubmit'])){ //if a new attendee is registered
-    $fname = $_POST['firstname'];
-    $message = "Success! You entered: ".$fname;
-  }
- ?>
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
-<link href="conStyle.css" type="text/css" rel="stylesheet" >
+<link href="conStyle.css" type="text/css" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -191,3 +182,23 @@
 
 </body>
 </html>
+
+
+
+<?php
+  if(isset($_POST["attendeeSubmit"])){ //if a new attendee is registered
+    $fname = $_POST["firstname"];
+    $lname = $_POST["lastname"];
+    $email = $_POST["email"];
+    $attendee = $_POST["attendee"];
+    $message = "Success! Welcome to the conference ".$fname." ".$lname.". You have purchased a ".$attendee." ticket, your ticket has been emailed to ".$email;
+    echo "<script type='text/javascript'>alert('$message');</script>";
+    $pdo = new PDO('mysql:host=localhost;dbname=confrence', "root", "");
+
+    if($attendee == "professional"){
+      $sql = "INSERT INTO professional(email, fname, lname) VALUES ('$email', '$fname', '$lname')";
+    }
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+  }
+ ?>
