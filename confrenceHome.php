@@ -47,11 +47,11 @@
             <div class="col">
                 <h1>Sign Up</h1>
             </div>
-            <div class="col">
-              <select class="form-control" name="attendee">
+            <div class="col" id="signupParent">
+              <select class="form-control" id="attendeeTypeDropdown" name="attendee">
                 <option value="professional">Professional</option>
-                <option value="sponsor">Sponsor</option>
                 <option value="student">Student</option>
+                <option value="sponsor">Sponsor</option>
               </select>
             </div>
           </div>
@@ -73,7 +73,7 @@
               </div>
             </div>
           </div>
-          <div class="attendeeSignupBuckets" id="stuedentBucket">
+          <div class="attendeeSignupBuckets" id="studentBucket">
             <div class="row">
               <h3>Students</h3>
             </div>
