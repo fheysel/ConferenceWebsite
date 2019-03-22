@@ -3,11 +3,22 @@
     $fname = $_POST["firstname"];
     $lname = $_POST["lastname"];
     $email = $_POST["email"];
+    $companyName = $_POST["companyName"];
+    $studentNum = $_POST["studentNum"];
+    $schoolName = $_POST["schoolName"];
     $attendee = $_POST["attendee"];
     $message = "Success! Welcome to the conference ".$fname." ".$lname.". You have purchased a ".$attendee." ticket, your ticket has been emailed to ".$email;
     $pdo = new PDO('mysql:host=localhost;dbname=confrence', "root", "");
-    if($attendee == "professional"){
+
+
+    if($attendee == "professional"){//PROFESSIONAL REGISTRATION
       $sql = "INSERT INTO professional(email, fname, lname) VALUES ('$email', '$fname', '$lname')";
+    }
+    elseif($attendee == "sponsor"){
+      $sql = "INSERT INTO sponsor(email, fname, lname, companyName) VALUES ('$email', '$fname', '$lname', '$companyName')";
+    }
+    elseif($attendee = "student"){
+      $sql = "INSERT INTO student(email, fname, lname, studentNum, schoolName) VALUES ('$email', '$fname', '$lname', '$studentNum', '$schoolName')";
     }
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
@@ -29,23 +40,12 @@
 
 <body>
   <div class="container" id="homePageDivWhite">
-    <div class="row">
-      <div class="col">
-        <h1>Sign Up.</h1>
-      </div>
-      <div class="col">
-        <form action="" method="post">
+    <form action="" method="post">
+      <div class="row">
+        <div class="col-lg-4">
           <div class="row">
             <div class="col">
-              <input class="form-control" type="text" name="firstname" placeholder="First Name">
-            </div>
-            <div class="col">
-              <input class="form-control" type="text" name="lastname" placeholder="Last Name">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <input class="form-control" type="text" name="email" placeholder="email">
+                <h1>Sign Up</h1>
             </div>
             <div class="col">
               <select class="form-control" name="attendee">
@@ -55,17 +55,58 @@
               </select>
             </div>
           </div>
-          <div class="row">
-            <div class="col">
-                <input class="form-control" type="text" name="roomNum" placeholder="Room Num (Stuents Only)">
+        </div>
+        <div class="col-lg-8">
+          <div class="attendeeSignupBuckets" id="generalInfo">
+            <div class="row">
+              <h3>General Info</h3>
             </div>
-            <div class="col">
+            <div class="row">
+              <div class="col">
+                <input class="form-control" type="text" name="firstname" placeholder="First Name">
+              </div>
+              <div class="col">
+                <input class="form-control" type="text" name="lastname" placeholder="Last Name">
+              </div>
+              <div class="col">
+                <input class="form-control" type="text" name="email" placeholder="email">
+              </div>
+            </div>
+          </div>
+          <div class="attendeeSignupBuckets" id="stuedentBucket">
+            <div class="row">
+              <h3>Students</h3>
+            </div>
+            <div class="row">
+              <div class="col">
+                <input class="form-control" type="text" name="schoolName" placeholder="School Name">
+              </div>
+              <div class="col">
+                <input class="form-control" type="text" name="studentNum" placeholder="Student Number">
+              </div>
+              <div class="col">
+                <input class="form-control" type="text" name="roomNum" placeholder="Room Num (Optional)">
+              </div>
+            </div>
+          </div>
+          <div class="attendeeSignupBuckets" id="sponsorBucket">
+            <div class="row">
+              <h3>Sponsors</h3>
+            </div>
+            <div class="row">
+              <div class="col">
+                <input class="form-control" type="text" name="companyName" placeholder="Company Name">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col centered">
               <input class="btn btn-square btn-primary" name="attendeeSubmit" type="submit" value="Sign Up">
             </div>
           </div>
-        </form>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 
   <div class="container" id="homePageDivGrey">
@@ -101,7 +142,7 @@
         </form>
       </div>
       <div class="col">
-        <h1>Sponsor.</h1>
+        <h1>Sponsor</h1>
       </div>
     </div>
   </div>

@@ -3,6 +3,15 @@ h1 {
   color: #5f084b;
 }
 
+h3 {
+  padding-left: 15px;
+  color: #5f084b;
+}
+
+.attendeeSignupBuckets {
+  padding: 0 0 50px 0;
+}
+
 .centered{
   margin: 0 auto;
   text-align: center;
