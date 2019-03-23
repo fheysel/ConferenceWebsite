@@ -8,6 +8,16 @@ h3 {
   color: #5f084b;
 }
 
+h4 {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+ul#navbar {
+  display: inline;
+}
+
 .attendeeSignupBuckets {
   padding: 0 0 50px 0;
 }
