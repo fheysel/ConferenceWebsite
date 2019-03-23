@@ -258,7 +258,6 @@
             #stmt now holds the result of the query
             while($row = $stmt->fetch()) {
               echo "<tr><td>".$row["fname"]."</td><td>".$row["lname"]."</td><td>".$row["email"]."</td><td>".$row["schoolName"]."</td></tr>";
-              #echo "<tr><td>".$row["fname"]."</td><td>".$row["lname"]."</td></tr>";
             }
           ?>
         </table>

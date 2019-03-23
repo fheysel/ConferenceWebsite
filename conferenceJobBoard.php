@@ -8,6 +8,7 @@
 </head>
 
 <body>
+  <!-- NAVBAR -->
   <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light container">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -33,16 +34,24 @@
   <div class="container">
     <br><br>
     <h4>Current Job Postings</h4>
-    <br><br>
   </div>
 
-  <div class="container">
-    <h6>Sort By: </h6>
-    <select class="form-control" id="attendeeTypeDropdown" name="attendee">
-      <option value="companyName" selected>Company Name</option>
-      <option value="salary">Highest Salary</option>
-      <option value="jobTitle">Job Title</option>
-    </select>
+  <div class="container homePageDivWhite">
+    <form class="" action="" method="post">
+      <div class="row">
+        <div class="col-lg-3">
+          <select class="form-control" id="attendeeTypeDropdown" name="sortByDDJB">
+            <option value="title">Sort By</option>
+            <option value="companyName">Company Name</option>
+            <option value="salary">Highest Salary</option>
+            <option value="jobTitle">Job Title</option>
+          </select>
+        </div>
+        <div class="col-lg-1">
+          <input class="btn btn-square btn-primary" type="submit" name="sortByJB" value="Go">
+        </div>
+      </div>
+    </form>
   </div>
   <div class="container" id="homePageDivWhite">
     <table class="table">
@@ -53,14 +62,29 @@
       <th>Province</th>
 
       <?php
-        $pdo = new PDO('mysql:host=localhost;dbname=confrence', "root", "");
-        $sql = "SELECT companyName, jobTitle, salary, city, prov FROM advert ORDER BY companyName ASC";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
+        if (isset($_POST["sortByJB"])) {
+          $sortBy = $_POST["sortByDDJB"];
+          if($sortBy == 'title'){ //not working 
+            //Do Nothing
+          }
+          else{
+            $pdo = new PDO('mysql:host=localhost;dbname=confrence', "root", "");
 
-        #stmt now holds the result of the query
-        while($row = $stmt->fetch()) {
-          echo "<tr><td>".$row["companyName"]."</td><td>".$row["jobTitle"]."</td><td>".$row["salary"]."</td><td>".$row["city"]."</td><td>".$row["prov"]."</td></tr>";
+            if($sortBy == 'salary'){
+              $sql = "SELECT companyName, jobTitle, salary, city, prov FROM advert ORDER BY $sortBy DESC";
+            }
+            else{
+              $sql = "SELECT companyName, jobTitle, salary, city, prov FROM advert ORDER BY $sortBy ASC";
+            }
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+
+            #stmt now holds the result of the query
+            while($row = $stmt->fetch()) {
+              echo "<tr><td>".$row["companyName"]."</td><td>".$row["jobTitle"]."</td><td>".$row["salary"]."</td><td>".$row["city"]."</td><td>".$row["prov"]."</td></tr>";
+            }
+          }
         }
       ?>
     </table>
