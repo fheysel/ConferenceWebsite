@@ -63,7 +63,7 @@
       $sponsorLevel = "Bronze";
     }
 
-    $sql = "INSERT INTO company(name, sponsorship, emailsSent) VALUES ('$companyName', '$sponsorLevel', 0)";
+    $sql = "INSERT INTO company(name, sponsorship, emailsSent, donation) VALUES ('$companyName', '$sponsorLevel', 0, $donationAmount)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
@@ -231,6 +231,76 @@
       </div>
       <div class="col">
         <h1>Sponsor</h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- FUNDS -->
+  <div class="container homePageDivWhite" id="funds">
+    <div class="row">
+      <div class="col-3">
+        <h1>Funds Raised</h1>
+      </div>
+      <div class="col-9">
+        <div class="row">
+          <div class="col">
+            <h4>Ticket Sales:</h4>
+          </div>
+          <div class="col">
+            <?php
+              $pdo = new PDO('mysql:host=localhost;dbname=confrence', "root", "");
+              $sql = "SELECT COUNT(email) as studentFunds FROM student";
+              $stmt = $pdo->prepare($sql);
+              $stmt->execute();
+              $result = $stmt->fetch();
+
+              $studentFunds = $result[0];
+
+              $sql = "SELECT COUNT(email) as studentFunds FROM professional";
+              $stmt = $pdo->prepare($sql);
+              $stmt->execute();
+              $result = $stmt->fetch();
+
+              $professionalFunds = $result[0];
+
+
+              console_log($studentFunds);
+              console_log($professionalFunds);
+
+              $totalFunds = ($studentFunds * 50) + ($professionalFunds * 100);
+
+              console_log($totalFunds);
+
+              echo "<h4 id='totalTicketFunds'>"."$totalFunds"."</h4>";
+             ?>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h4>Sponsorship:</h4>
+          </div>
+          <div class="col">
+
+            <?php
+              $pdo = new PDO('mysql:host=localhost;dbname=confrence', "root", "");
+              $sql = "SELECT SUM(donation) as donationTotal FROM company";
+              $stmt = $pdo->prepare($sql);
+              $stmt->execute();
+              $result = $stmt->fetch();
+              $donationTotal = $result[0];
+              echo "<h4 id='sponsorFunds'>"."$donationTotal"."</h4>";
+             ?>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h4>Total:</h4>
+          </div>
+          <div class="col">
+            <h4 id="totalFunds"></h4>
+          </div>
+        </div>
       </div>
     </div>
   </div>

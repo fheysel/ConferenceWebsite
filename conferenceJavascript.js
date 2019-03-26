@@ -29,6 +29,9 @@ function clickReact(e){
   e.stopPropagation;
 }
 
-//Popups
-// var signupParent = document.getElementById("attendee");
-// signupParent.addEventListener("click", clickReact, false);
+//Funds
+var totalTicketFunds = document.getElementById("totalTicketFunds").innerHTML;
+var sponsorFunds = document.getElementById("sponsorFunds").innerHTML;
+console.log(totalTicketFunds);
+console.log(sponsorFunds);
+document.getElementById("totalFunds").innerHTML = +totalTicketFunds + +sponsorFunds;
