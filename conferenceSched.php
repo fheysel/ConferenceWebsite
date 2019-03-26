@@ -8,6 +8,7 @@
 </head>
 
 <body>
+  <!-- NAVBAR -->
   <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light container">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -26,9 +27,60 @@
         <li class="nav-item">
           <a class="nav-link" href="conferenceHousing.php">Housing</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="conferenceCommittees.php">Committees</a>
+        </li>
       </ul>
     </div>
   </nav>
 
-<h1> Sched </h1>
+<div class="container">
+  <br><br>
+  <h1>Schedule</h1>
+</div>
+
+<div class="container homePageDivWhite">
+  <form class="" action="" method="post">
+    <div class="row">
+      <div class="col-lg-3">
+        <select class="form-control" id="attendeeTypeDropdown" name="sortByDDJB">
+          <option value="title">Sort By</option>
+          <option value="companyName">Company Name</option>
+          <option value="salary">Highest Salary</option>
+          <option value="jobTitle">Job Title</option>
+        </select>
+      </div>
+      <div class="col-lg-1">
+        <input class="btn btn-square btn-primary" type="submit" name="sortByJB" value="Go">
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="container" id="homePageDivWhite">
+  <table class="table">
+    <th>Time Block</th>
+    <th>Room Number</th>
+    <th>Session Title</th>
+    <th>Speaker's First Name</th>
+    <th>Speaker's Last Name</th>
+
+    <?php
+      $pdo = new PDO('mysql:host=localhost;dbname=confrence', "root", "");
+      $sql = "SELECT speakerSession.block, speakerSession.roomNumber, speakerSession.name, speaker.fname, speaker.lname
+              FROM speaksat
+              JOIN speaker ON speaksat.speakerEmail = speaker.email
+              JOIN speakerSession ON speaksat.sessionBlock = speakerSession.block AND speaksat.sessionRoom = speakerSession.roomNumber ";
+
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute();
+
+      #stmt now holds the result of the query
+      while($row = $stmt->fetch()) {
+        echo "<tr><td>".$row["block"]."</td><td>".$row["roomNumber"]."</td><td>".$row["name"]."</td><td>".$row["fname"]."</td><td>".$row["lname"]."</td></tr>";
+      }
+    ?>
+  </table>
+</div>
+
 </body>

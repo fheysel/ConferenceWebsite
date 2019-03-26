@@ -27,13 +27,16 @@
         <li class="nav-item">
           <a class="nav-link" href="conferenceHousing.php">Housing</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="conferenceCommittees.php">Committees</a>
+        </li>
       </ul>
     </div>
   </nav>
 
   <div class="container">
     <br><br>
-    <h4>Current Job Postings</h4>
+    <h1>Current Job Postings</h1>
   </div>
 
   <div class="container homePageDivWhite">
@@ -64,7 +67,7 @@
       <?php
         if (isset($_POST["sortByJB"])) {
           $sortBy = $_POST["sortByDDJB"];
-          if($sortBy == 'title'){ //not working 
+          if('$sortBy' == 'title'){ //not working
             //Do Nothing
           }
           else{

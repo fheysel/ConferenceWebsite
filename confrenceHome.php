@@ -1,10 +1,17 @@
 <?php
+  function console_log( $data ){
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
+  }
+
   if(isset($_POST["attendeeSubmit"])){ //if a new attendee is registered
     $fname = $_POST["firstname"];
     $lname = $_POST["lastname"];
     $email = $_POST["email"];
     $companyName = $_POST["companyName"];
     $studentNum = $_POST["studentNum"];
+    $roomNum = $_POST["roomNum"];
     $schoolName = $_POST["schoolName"];
     $attendee = $_POST["attendee"];
     $message = "Success! Welcome to the conference ".$fname." ".$lname.". You have purchased a ".$attendee." ticket, your ticket has been emailed to ".$email;
@@ -17,8 +24,16 @@
     elseif($attendee == "sponsor"){
       $sql = "INSERT INTO sponsor(email, fname, lname, companyName) VALUES ('$email', '$fname', '$lname', '$companyName')";
     }
-    elseif($attendee = "student"){
-      $sql = "INSERT INTO student(email, fname, lname, studentNum, schoolName) VALUES ('$email', '$fname', '$lname', '$studentNum', '$schoolName')";
+    elseif($attendee == "student"){
+      if($roomNum == ""){
+        $sql = "INSERT INTO student(email, fname, lname, studentNum, schoolName) VALUES ('$email', '$fname', '$lname', '$studentNum', '$schoolName')";
+      }
+      else{
+        $sql = "INSERT INTO student(email, fname, lname, studentNum, schoolName) VALUES ('$email', '$fname', '$lname', '$studentNum', '$schoolName');
+                INSERT INTO room(number, numBeds) VALUES ($roomNum, 2);
+                INSERT INTO hotellist(studentEmail, roomNumber) VALUES ('$email', $roomNum)";
+      }
+
     }
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
@@ -99,6 +114,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="conferenceHousing.php">Housing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="conferenceCommittees.php">Committees</a>
         </li>
       </ul>
     </div>
@@ -193,21 +211,23 @@
             </div>
           </div>
         </form>
-        <div class="row">
-          <div class="col">
-              <p>If you wish to delete a company from the database enter the company name in the textbox below.</p>
-          </div>
-        </div>
-        <form action="" method="post">
+        <div id="deleteSponsorBucket">
           <div class="row">
             <div class="col">
-              <input class="form-control" type="text" name="cNameDelete" placeholder="Company Name">
-            </div>
-            <div class="col">
-              <input class="btn btn-square btn-danger" type="submit" name="deleteSponsor" value="Delete">
+                <p>If you wish to delete a company and all associated employees from the database enter the company name in the textbox below.</p>
             </div>
           </div>
-        </form>
+          <form action="" method="post">
+            <div class="row">
+              <div class="col">
+                <input class="form-control" type="text" name="cNameDelete" placeholder="Company Name">
+              </div>
+              <div class="col">
+                <input class="btn btn-square btn-danger" type="submit" name="deleteSponsor" value="Delete">
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
       <div class="col">
         <h1>Sponsor</h1>

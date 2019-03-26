@@ -36,71 +36,63 @@
 
   <div class="container">
     <br><br>
-    <h1>Housing Information</h1>
+    <h1>Planning Committees</h1>
   </div>
 
   <div class="container homePageDivWhite">
     <form class="" action="" method="post">
       <div class="row">
         <div class="col-lg-3">
-          <select class="form-control" id="attendeeTypeDropdown" name="sortByDDHousing">
-            <option value="title">Sort By</option>
-            <option value="studentNum">Student Number</option>
-            <option value="lName">Last Name</option>
-            <option value="roomNumber">Room Number</option>
+          <select class="form-control" id="attendeeTypeDropdown" name="committeeDD">
+            <option value="title">Sub-Committee</option>
+            <option value="any">All Committee Members</option>
+            <option value="Planning">Planning</option>
+            <option value="Recruitment">Recruitment</option>
+            <option value="Sponsorship">Sponsorship</option>
           </select>
         </div>
         <div class="col-lg-1">
-          <input class="btn btn-square btn-primary" type="submit" name="sortByHousing" value="Go">
+          <input class="btn btn-square btn-primary" type="submit" name="committeeDDSubmit" value="View Committee">
         </div>
       </div>
     </form>
   </div>
 
-
-  <div class="container">
+  <div class="container" id="homePageDivWhite">
     <table class="table">
       <th>First Name</th>
       <th>Last Name</th>
-      <th>Student ID</th>
-      <th>School Name</th>
-      <th>Hotel Room Number</th>
+      <th>Committee Name</th>
 
       <?php
-        function console_log( $data ){
-          echo '<script>';
-          echo 'console.log('. json_encode( $data ) .')';
-          echo '</script>';
-        }
+        if (isset($_POST["committeeDDSubmit"])) {
+          $committeeName = $_POST["committeeDD"];
+          $pdo = new PDO('mysql:host=localhost;dbname=confrence', "root", "");
 
-        if (isset($_POST["sortByHousing"])) {
-          $sortBy= $_POST["sortByDDHousing"];
-
-          console_log($sortBy);
-
-
-          if($sortBy == 'title'){ //not working
-            //Do Nothing
+          if ($committeeName == 'any') {
+            $sql = "SELECT fname, lname, committeeName
+                    FROM committeeMember
+                    JOIN memberison ON memberison.memberEmail = committeeMember.email";
           }
           else{
-            $pdo = new PDO('mysql:host=localhost;dbname=confrence', "root", "");
+            $sql = "SELECT fname, lname, committeeName
+                    FROM committeeMember
+                    JOIN memberison ON memberison.memberEmail = committeeMember.email
+                    WHERE memberison.committeeName = '$committeeName'";
+          }
 
-            $sql = "SELECT fname, lname, studentNum, schoolName, roomNumber
-                    FROM student
-                    JOIN hotellist
-                    ON student.email = hotellist.studentEmail
-                    ORDER BY $sortBy ASC"; //not working
 
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
 
             #stmt now holds the result of the query
             while($row = $stmt->fetch()) {
-              echo "<tr><td>".$row["fname"]."</td><td>".$row["lname"]."</td><td>".$row["studentNum"]."</td><td>".$row["schoolName"]."</td><td>".$row["roomNumber"]."</td></tr>";
+              echo "<tr><td>".$row["fname"]."</td><td>".$row["lname"]."</td><td>".$row["committeeName"]."</td></tr>";
             }
           }
-        }
       ?>
     </table>
   </div>
+
 </body>
+</html>
