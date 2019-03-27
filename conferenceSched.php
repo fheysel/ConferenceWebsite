@@ -5,23 +5,26 @@
     echo '</script>';
   }
 
-  if(isset($_POST["changeSchedule"])){
+  if (isset($_POST["changeSchedule"])){
     $currentRoom = $_POST["currentRoom"];
-    $currentTime = $_POST["currentTime"];
+    $currentTime = $_POST["currentTimeDropDown"];
     $newRoom = $_POST["newRoom"];
-    $newTime = $_POST["newTime"];
+    $newTime = $_POST["newTimeDropDown"];
 
     $pdo = new PDO('mysql:host=localhost;dbname=confrence', "root", "");
 
-    $sql = "UPDATE speakerSession SET block = '$newTime', roomNumber = $newRoom WHERE block = '$currentTime' AND roomNumber = $currentRoom;
-            UPDATE speaksat SET sessionBlock = '$newTime', sessionRoom = $newRoom WHERE sessionBlock = '$currentTime' AND sessionRoom = $currentRoom";
+    //
+    // console_log($currentTime);
+    // console_log($currentRoom);
+    // console_log($newTime);
+    // console_log($newRoom);
+
+
+    $sql = "UPDATE speakerSession SET block = \"$newTime\", roomNumber = $newRoom WHERE block = \"$currentTime\" AND roomNumber = \"$currentRoom\";
+            UPDATE speaksat SET sessionBlock = \"$newTime\", sessionRoom = $newRoom WHERE sessionBlock = \"$currentTime\" AND sessionRoom = $currentRoom";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
-
-    // redirect to the same page without the POST data
-    header("Location: ".$_SERVER['PHP_SELF']);
-    die;
   }
  ?>
 
@@ -69,19 +72,41 @@
 <div class="container homePageDivWhite">
   <form class="" action="" method="post">
     <div class="row">
-      <div class="col-lg-2">
-        <input class="form-control" type="text" name="currentRoom" placeholder="Current Room">
-      </div>
       <div class="col-lg-3">
         <select class="form-control" name="currentTimeDropDown">
           <option value="currentTime">Current Slot</option>
           <option value="0">Saturday 9:00 - 10:00 am</option>
-          <option value="2">Saturday 10:00 - 11:00 am</option>
-          <option value="3">Saturday 11:00 - 12:00 am</option>
-          <option value="4">Saturday 12:00 - 1:00 pm</option>
-          <option value="5">Saturday 1:00 - 2:00 pm</option>
-          <option value="6">Saturday 2:00 - 3:00 pm</option>
-          <option value="7">Saturday 3:00 - 4:00 pm</option>
+          <option value="1">Saturday 10:00 - 11:00 am</option>
+          <option value="2">Saturday 11:00 - 12:00 am</option>
+          <option value="3">Saturday 12:00 - 1:00 pm</option>
+          <option value="4">Saturday 1:00 - 2:00 pm</option>
+          <option value="5">Saturday 2:00 - 3:00 pm</option>
+          <option value="6">Saturday 3:00 - 4:00 pm</option>
+          <option value="7">Saturday 4:00 - 5:00 pm</option>
+          <option value="8">Sunday 9:00 - 10:00 am</option>
+          <option value="9">Sunday 10:00 - 11:00 am</option>
+          <option value="A">Sunday 12:00 - 1:00 pm</option>
+          <option value="B">Sunday 1:00 - 2:00 pm</option>
+          <option value="C">Sunday 2:00 - 3:00 pm</option>
+          <option value="D">Sunday 3:00 - 4:00 pm</option>
+          <option value="E">Sunday 4:00 - 5:00 pm</option>
+          <option value="F">Sunday 5:00 - 6:00 pm</option>
+        </select>
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" type="text" name="currentRoom" placeholder="Current Room">
+      </div>
+      <div class="col-lg-3">
+        <select class="form-control" name="newTimeDropDown">
+          <option value="currentTime">New Slot</option>
+          <option value="0">Saturday 9:00 - 10:00 am</option>
+          <option value="1">Saturday 10:00 - 11:00 am</option>
+          <option value="2">Saturday 11:00 - 12:00 am</option>
+          <option value="3">Saturday 12:00 - 1:00 pm</option>
+          <option value="4">Saturday 1:00 - 2:00 pm</option>
+          <option value="5">Saturday 2:00 - 3:00 pm</option>
+          <option value="6">Saturday 3:00 - 4:00 pm</option>
+          <option value="7">Saturday 4:00 - 5:00 pm</option>
           <option value="8">Sunday 9:00 - 10:00 am</option>
           <option value="9">Sunday 10:00 - 11:00 am</option>
           <option value="A">Sunday 12:00 - 1:00 pm</option>
@@ -94,27 +119,6 @@
       </div>
       <div class="col-lg-2">
         <input class="form-control" type="text" name="newRoom" placeholder="New Room">
-      </div>
-      <div class="col-lg-3">
-        <select class="form-control" name="newTimeDropDown">
-          <option value="currentTime">Current Slot</option>
-          <option value="0">Saturday 9:00 - 10:00 am</option>
-          <option value="1">Saturday 10:00 - 11:00 am</option>
-          <option value="2">Saturday 11:00 - 12:00 am</option>
-          <option value="3">Saturday 12:00 - 1:00 pm</option>
-          <option value="4">Saturday 1:00 - 2:00 pm</option>
-          <option value="5">Saturday 2:00 - 3:00 pm</option>
-          <option value="6">Saturday 3:00 - 4:00 pm</option>
-          <option value="6">Saturday 4:00 - 5:00 pm</option>
-          <option value="8">Sunday 9:00 - 10:00 am</option>
-          <option value="9">Sunday 10:00 - 11:00 am</option>
-          <option value="A">Sunday 12:00 - 1:00 pm</option>
-          <option value="B">Sunday 1:00 - 2:00 pm</option>
-          <option value="C">Sunday 2:00 - 3:00 pm</option>
-          <option value="D">Sunday 3:00 - 4:00 pm</option>
-          <option value="E">Sunday 4:00 - 5:00 pm</option>
-          <option value="F">Sunday 5:00 - 6:00 pm</option>
-        </select>
       </div>
       <div class="col-lg-2">
         <input class="btn btn-square btn-primary" type="submit" name="changeSchedule" value="Change Schedule">
@@ -143,38 +147,41 @@
 
       #stmt now holds the result of the query
       while($row = $stmt->fetch()) {
-        if("block" == 0){
+        console_log($row["block"]);
+        if($row["block"] == 0){
           $block = "Saturday 9:00 - 10:00 am";
-        }elseif ("block" == 1) {
+        }elseif ($row["block"] == 1) {
           $block = "Saturday 10:00 - 11:00 am";
-        }elseif ("block" == 2) {
+        }elseif ($row["block"] == 2) {
           $block = "Saturday 11:00 - 12:00 pm";
-        }elseif ("block" == 3) {
+        }elseif ($row["block"] == 3) {
           $block = "Saturday 12:00 - 1:00 pm";
-        }elseif ("block" == 4) {
+        }elseif ($row["block"] == 4) {
           $block = "Saturday 1:00 - 2:00 pm";
-        }elseif ("block" == 5) {
+        }elseif ($row["block"] == 5) {
           $block = "Saturday 2:00 - 3:00 pm";
-        }elseif ("block" == 6) {
+        }elseif ($row["block"] == 6) {
           $block = "Saturday 3:00 - 4:00 pm";
-        }elseif ("block" == 7) {
+        }elseif ($row["block"] == 7) {
           $block = "Saturday 4:00 - 5:00 pm";
-        }elseif ("block" == 8) {
+        }elseif ($row["block"] == 8) {
           $block = "Sunday 9:00 - 10:00 am";
-        }elseif ("block" == 9) {
+        }elseif ($row["block"] == 9) {
           $block = "Sunday 10:00 - 11:00 am";
-        }elseif ("block" == A) {
+        }elseif ($row["block"] == A) {
           $block = "Sunday 11:00 - 12:00 pm";
-        }elseif ("block" == B) {
+        }elseif ($row["block"] == B) {
           $block = "Sunday 12:00 - 1:00 pm";
-        }elseif ("block" == C) {
+        }elseif ($row["block"] == 'C') {
           $block = "Sunday 1:00 - 2:00 pm";
-        }elseif ("block" == D) {
+        }elseif ($row["block"] == D) {
           $block = "Sunday 2:00 - 3:00 pm";
-        }elseif ("block" == E) {
+        }elseif ($row["block"] == E) {
           $block = "Sunday 3:00 - 4:00 pm";
-        }elseif ("block" == F) {
+        }elseif ($row["block"] == F) {
           $block = "Sunday 4:00 - 5:00 pm";
+        }else{
+          $block = "Error";
         }
         echo "<tr><td>"."$block"."</td><td>".$row["roomNumber"]."</td><td>".$row["name"]."</td><td>".$row["fname"]."</td><td>".$row["lname"]."</td></tr>";
       }
