@@ -214,7 +214,7 @@
         <div id="deleteSponsorBucket">
           <div class="row">
             <div class="col">
-                <p>If you wish to delete a company and all associated employees from the database enter the company name in the textbox below.</p>
+                <p>If you wish to delete a company, all associated employees, and their donation from the database, enter the company name below. WARNING! This action cannot be undone!</p>
             </div>
           </div>
           <form action="" method="post">
