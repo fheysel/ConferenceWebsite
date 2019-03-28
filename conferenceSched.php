@@ -74,7 +74,7 @@
     <div class="row">
       <div class="col-lg-3">
         <select class="form-control" name="currentTimeDropDown">
-          <option value="currentTime">Current Slot</option>
+          <option value="currentTime">New Slot</option>
           <option value="0">Saturday 9:00 - 10:00 am</option>
           <option value="1">Saturday 10:00 - 11:00 am</option>
           <option value="2">Saturday 11:00 - 12:00 am</option>
@@ -85,12 +85,12 @@
           <option value="7">Saturday 4:00 - 5:00 pm</option>
           <option value="8">Sunday 9:00 - 10:00 am</option>
           <option value="9">Sunday 10:00 - 11:00 am</option>
-          <option value="A">Sunday 12:00 - 1:00 pm</option>
-          <option value="B">Sunday 1:00 - 2:00 pm</option>
-          <option value="C">Sunday 2:00 - 3:00 pm</option>
-          <option value="D">Sunday 3:00 - 4:00 pm</option>
-          <option value="E">Sunday 4:00 - 5:00 pm</option>
-          <option value="F">Sunday 5:00 - 6:00 pm</option>
+          <option value="A">Sunday 11:00 - 12:00 pm</option>
+          <option value="B">Sunday 12:00 - 1:00 pm</option>
+          <option value="C">Sunday 1:00 - 2:00 pm</option>
+          <option value="D">Sunday 2:00 - 3:00 pm</option>
+          <option value="E">Sunday 3:00 - 4:00 pm</option>
+          <option value="F">Sunday 4:00 - 5:00 pm</option>
         </select>
       </div>
       <div class="col-lg-2">
@@ -109,12 +109,12 @@
           <option value="7">Saturday 4:00 - 5:00 pm</option>
           <option value="8">Sunday 9:00 - 10:00 am</option>
           <option value="9">Sunday 10:00 - 11:00 am</option>
-          <option value="A">Sunday 12:00 - 1:00 pm</option>
-          <option value="B">Sunday 1:00 - 2:00 pm</option>
-          <option value="C">Sunday 2:00 - 3:00 pm</option>
-          <option value="D">Sunday 3:00 - 4:00 pm</option>
-          <option value="E">Sunday 4:00 - 5:00 pm</option>
-          <option value="F">Sunday 5:00 - 6:00 pm</option>
+          <option value="A">Sunday 11:00 - 12:00 pm</option>
+          <option value="B">Sunday 12:00 - 1:00 pm</option>
+          <option value="C">Sunday 1:00 - 2:00 pm</option>
+          <option value="D">Sunday 2:00 - 3:00 pm</option>
+          <option value="E">Sunday 3:00 - 4:00 pm</option>
+          <option value="F">Sunday 4:00 - 5:00 pm</option>
         </select>
       </div>
       <div class="col-lg-2">
@@ -148,37 +148,37 @@
       #stmt now holds the result of the query
       while($row = $stmt->fetch()) {
         console_log($row["block"]);
-        if($row["block"] == 0){
+        if($row["block"] == "0"){
           $block = "Saturday 9:00 - 10:00 am";
-        }elseif ($row["block"] == 1) {
+        }elseif ($row["block"] == "1") {
           $block = "Saturday 10:00 - 11:00 am";
-        }elseif ($row["block"] == 2) {
+        }elseif ($row["block"] == "2") {
           $block = "Saturday 11:00 - 12:00 pm";
-        }elseif ($row["block"] == 3) {
+        }elseif ($row["block"] == "3") {
           $block = "Saturday 12:00 - 1:00 pm";
-        }elseif ($row["block"] == 4) {
+        }elseif ($row["block"] == "4") {
           $block = "Saturday 1:00 - 2:00 pm";
-        }elseif ($row["block"] == 5) {
+        }elseif ($row["block"] == "5") {
           $block = "Saturday 2:00 - 3:00 pm";
-        }elseif ($row["block"] == 6) {
+        }elseif ($row["block"] == "6") {
           $block = "Saturday 3:00 - 4:00 pm";
-        }elseif ($row["block"] == 7) {
+        }elseif ($row["block"] == "7") {
           $block = "Saturday 4:00 - 5:00 pm";
-        }elseif ($row["block"] == 8) {
+        }elseif ($row["block"] == "8") {
           $block = "Sunday 9:00 - 10:00 am";
-        }elseif ($row["block"] == 9) {
+        }elseif ($row["block"] == "9") {
           $block = "Sunday 10:00 - 11:00 am";
-        }elseif ($row["block"] == A) {
+        }elseif ($row["block"] == "A") {
           $block = "Sunday 11:00 - 12:00 pm";
-        }elseif ($row["block"] == B) {
+        }elseif ($row["block"] == "B") {
           $block = "Sunday 12:00 - 1:00 pm";
-        }elseif ($row["block"] == 'C') {
+        }elseif ($row["block"] == "C") {
           $block = "Sunday 1:00 - 2:00 pm";
-        }elseif ($row["block"] == D) {
+        }elseif ($row["block"] == "D") {
           $block = "Sunday 2:00 - 3:00 pm";
-        }elseif ($row["block"] == E) {
+        }elseif ($row["block"] == "E") {
           $block = "Sunday 3:00 - 4:00 pm";
-        }elseif ($row["block"] == F) {
+        }elseif ($row["block"] == "F") {
           $block = "Sunday 4:00 - 5:00 pm";
         }else{
           $block = "Error";
