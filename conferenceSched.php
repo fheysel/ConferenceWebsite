@@ -74,7 +74,7 @@
     <div class="row">
       <div class="col-lg-3">
         <select class="form-control" name="currentTimeDropDown">
-          <option value="currentTime">New Slot</option>
+          <option value="currentTime">Current Slot</option>
           <option value="0">Saturday 9:00 - 10:00 am</option>
           <option value="1">Saturday 10:00 - 11:00 am</option>
           <option value="2">Saturday 11:00 - 12:00 am</option>

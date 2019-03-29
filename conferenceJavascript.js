@@ -1,4 +1,4 @@
-//Attendee Dropdown
+//Attendee Dropdown Grey Out
 var signupParent = document.getElementById("signupParent");
 signupParent.addEventListener("click", clickReact, false);
 
@@ -32,6 +32,6 @@ function clickReact(e){
 //Funds
 var totalTicketFunds = document.getElementById("totalTicketFunds").innerHTML;
 var sponsorFunds = document.getElementById("sponsorFunds").innerHTML;
-console.log(totalTicketFunds);
-console.log(sponsorFunds);
+// console.log(totalTicketFunds);
+// console.log(sponsorFunds);
 document.getElementById("totalFunds").innerHTML = +totalTicketFunds + +sponsorFunds;

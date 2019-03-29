@@ -18,10 +18,12 @@
     $pdo = new PDO('mysql:host=localhost;dbname=confrence', "root", "");
 
 
+    console_log($attendee);
     if($attendee == "professional"){//PROFESSIONAL REGISTRATION
       $sql = "INSERT INTO professional(email, fname, lname) VALUES ('$email', '$fname', '$lname')";
     }
     elseif($attendee == "sponsor"){
+      console_log("$email");
       $sql = "INSERT INTO sponsor(email, fname, lname, companyName) VALUES ('$email', '$fname', '$lname', '$companyName')";
     }
     elseif($attendee == "student"){

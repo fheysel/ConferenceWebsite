@@ -1,11 +1,11 @@
 h1 {
   text-align: center;
-  color: #5f084b;
+  color: black;
 }
 
 h3 {
   padding-left: 15px;
-  color: #5f084b;
+  color: black;
 }
 
 h4 {
@@ -38,7 +38,7 @@ ul#navbar {
 }
 
 .nav-link{
-  color: #5f084b;
+  color: black;
   font-size: 18pt;
 }
 
