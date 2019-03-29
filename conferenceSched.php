@@ -77,7 +77,7 @@
           <option value="currentTime">Current Slot</option>
           <option value="0">Saturday 9:00 - 10:00 am</option>
           <option value="1">Saturday 10:00 - 11:00 am</option>
-          <option value="2">Saturday 11:00 - 12:00 am</option>
+          <option value="2">Saturday 11:00 am - 12:00 pm</option>
           <option value="3">Saturday 12:00 - 1:00 pm</option>
           <option value="4">Saturday 1:00 - 2:00 pm</option>
           <option value="5">Saturday 2:00 - 3:00 pm</option>
@@ -85,7 +85,7 @@
           <option value="7">Saturday 4:00 - 5:00 pm</option>
           <option value="8">Sunday 9:00 - 10:00 am</option>
           <option value="9">Sunday 10:00 - 11:00 am</option>
-          <option value="A">Sunday 11:00 - 12:00 pm</option>
+          <option value="A">Sunday 11:00 am - 12:00 pm</option>
           <option value="B">Sunday 12:00 - 1:00 pm</option>
           <option value="C">Sunday 1:00 - 2:00 pm</option>
           <option value="D">Sunday 2:00 - 3:00 pm</option>
@@ -101,7 +101,7 @@
           <option value="currentTime">New Slot</option>
           <option value="0">Saturday 9:00 - 10:00 am</option>
           <option value="1">Saturday 10:00 - 11:00 am</option>
-          <option value="2">Saturday 11:00 - 12:00 am</option>
+          <option value="2">Saturday 11:00 am - 12:00 pm</option>
           <option value="3">Saturday 12:00 - 1:00 pm</option>
           <option value="4">Saturday 1:00 - 2:00 pm</option>
           <option value="5">Saturday 2:00 - 3:00 pm</option>
@@ -109,7 +109,7 @@
           <option value="7">Saturday 4:00 - 5:00 pm</option>
           <option value="8">Sunday 9:00 - 10:00 am</option>
           <option value="9">Sunday 10:00 - 11:00 am</option>
-          <option value="A">Sunday 11:00 - 12:00 pm</option>
+          <option value="A">Sunday 11:00 am - 12:00 pm</option>
           <option value="B">Sunday 12:00 - 1:00 pm</option>
           <option value="C">Sunday 1:00 - 2:00 pm</option>
           <option value="D">Sunday 2:00 - 3:00 pm</option>
@@ -153,7 +153,7 @@
         }elseif ($row["block"] == "1") {
           $block = "Saturday 10:00 - 11:00 am";
         }elseif ($row["block"] == "2") {
-          $block = "Saturday 11:00 - 12:00 pm";
+          $block = "Saturday 11:00 am - 12:00 pm";
         }elseif ($row["block"] == "3") {
           $block = "Saturday 12:00 - 1:00 pm";
         }elseif ($row["block"] == "4") {
